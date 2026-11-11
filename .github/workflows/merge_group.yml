@@ -1,0 +1,25 @@
+{
+  "name": "merge_group-workflows",
+  "on": {
+    "merge_group": {
+      "workflows": [
+        "Native producer r-5745e8ec0a6e"
+      ]
+    },
+    "push": {}
+  },
+  "permissions": {},
+  "jobs": {
+    "receipt": {
+      "name": "merge_group-workflows",
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 2,
+      "steps": [
+        {
+          "name": "Safe event receipt",
+          "run": "printf '%s\\n' 'CASE=merge_group-workflows'\njq '{action, number, ref, pull_request: (if .pull_request then {number: .pull_request.number, head: (.pull_request.head | {ref, sha}), base: (.pull_request.base | {ref, sha})} else null end), workflow_run: (if .workflow_run then (.workflow_run | {id, name, event, head_sha, conclusion}) else null end)}' \"$GITHUB_EVENT_PATH\"\nprintf 'EVENT=%s\\nREF=%s\\nSHA=%s\\nRUN_ID=%s\\nATTEMPT=%s\\n' \"$GITHUB_EVENT_NAME\" \"$GITHUB_REF\" \"$GITHUB_SHA\" \"$GITHUB_RUN_ID\" \"$GITHUB_RUN_ATTEMPT\"\n"
+        }
+      ]
+    }
+  }
+}
