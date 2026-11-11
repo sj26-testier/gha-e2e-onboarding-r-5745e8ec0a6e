@@ -2,11 +2,13 @@
   "name": "issue_comment-workflows",
   "on": {
     "issue_comment": {
+      "types": [
+        "created"
+      ],
       "workflows": [
         "Native producer r-5745e8ec0a6e"
       ]
-    },
-    "push": {}
+    }
   },
   "permissions": {},
   "jobs": {

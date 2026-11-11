@@ -2,11 +2,13 @@
   "name": "pull_request-workflows",
   "on": {
     "pull_request": {
+      "types": [
+        "opened"
+      ],
       "workflows": [
         "Native producer r-5745e8ec0a6e"
       ]
-    },
-    "push": {}
+    }
   },
   "permissions": {},
   "jobs": {
